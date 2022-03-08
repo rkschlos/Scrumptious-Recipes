@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "recipes.apps.RecipesConfig",
+    "markdownify.apps.MarkdownifyConfig" "recipes.apps.RecipesConfig",
     "tags.apps.TagsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
