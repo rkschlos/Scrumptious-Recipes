@@ -1,13 +1,31 @@
 from django.contrib import admin
 
+from recipes.models import Recipe, Measure, FoodItem, Ingredient, Step
+
 
 # Register your models here.
-from recipes.models import Recipe, Measure, FoodItem, Ingredient, Step
-from tags.models import Tag
+class RecipeAdmin(admin.ModelAdmin):
+    pass
 
-admin.site.register(Recipe)
-admin.site.register(Measure)
-admin.site.register(FoodItem)
-admin.site.register(Ingredient)
-admin.site.register(Step)
-admin.site.register(Tag)
+
+class MeasureAdmin(admin.ModelAdmin):
+    pass
+
+
+class FoodItemAdmin(admin.ModelAdmin):
+    pass
+
+
+class IngredientAdmin(admin.ModelAdmin):
+    pass
+
+
+class StepAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Recipe, RecipeAdmin)
+admin.site.register(Measure, MeasureAdmin)
+admin.site.register(FoodItem, FoodItemAdmin)
+admin.site.register(Ingredient, IngredientAdmin)
+admin.site.register(Step, StepAdmin)
