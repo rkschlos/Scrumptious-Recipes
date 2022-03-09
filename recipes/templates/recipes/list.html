@@ -29,7 +29,8 @@
   </header>
   <main class="recipe-grid">
     {% for recipe in recipe_list %}
-    <!-- works with recipe_list but unsure why not plural-->
+    <!-- works with recipe_list but unsure why not plural?
+      Is it because it's referencing the class name?-->
     <div class="recipe-card">
       <h2 class="recipe-card-title">
         <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
