@@ -31,9 +31,7 @@ class FoodItem(models.Model):
 
 
 class Ingredient(models.Model):
-    amount = models.FloatField(
-        default=1, validators=[MaxValueValidator(20), MinValueValidator(1)]
-    )
+    amount = models.FloatField(validators=[MaxValueValidator(20)])
     recipe = models.ForeignKey(
         "Recipe",
         related_name="ingredients",
