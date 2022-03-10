@@ -31,6 +31,7 @@ class RecipeUpdateView(UpdateView):
 class RecipeListView(ListView):
     model = Recipe
     template_name = "recipes/list.html"
+    paginate_by = 3
     # return render(request, "recipes/list.html", context)
 
 
