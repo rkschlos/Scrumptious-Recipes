@@ -109,6 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = "recipes_list"
+LOGOUT_REDIRECT_URL = "recipes_list"
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
@@ -151,6 +154,3 @@ MARKDOWNIFY = {
         ]
     }
 }
-
-LOGIN_REDIRECT_URL = "recipes_list"
-LOGOUT_REDIRECT_URL = "recipes_list"

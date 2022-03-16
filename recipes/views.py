@@ -6,7 +6,6 @@ from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from recipes.forms import RatingForm
-
 from recipes.models import Recipe
 
 
@@ -14,12 +13,12 @@ def log_rating(request, recipe_id):
     if request.method == "POST":
         form = RatingForm(request.POST)
         if form.is_valid():
+            rating = form.save(commit=False)
             try:
-                rating = form.save(commit=False)
                 rating.recipe = Recipe.objects.get(pk=recipe_id)
-                rating.save()
             except Recipe.DoesNotExist:
                 return redirect("recipes_list")
+            rating.save()
     return redirect("recipe_detail", pk=recipe_id)
 
 
@@ -45,9 +44,9 @@ class RecipeCreateView(LoginRequiredMixin, CreateView):
     fields = ["name", "description", "image"]
     success_url = reverse_lazy("recipes_list")
 
-    def form_valit(self, form):
+    def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid()
+        return super().form_valid(form)
 
 
 class RecipeUpdateView(LoginRequiredMixin, UpdateView):

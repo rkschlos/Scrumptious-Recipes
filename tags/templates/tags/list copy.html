@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Recipe - Scrumptious</title>
+  <title>Scrumptious</title>
   <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
 
@@ -21,26 +21,25 @@
         <li>
           <a href="{% url 'tags_list' %}">Tags</a>
         </li>
-        {% if user.is_staff %}
         <li>
           <a href="{% url 'admin:index' %}">Admin</a>
         </li>
-        {% endif %}
-        {% if user.is_authenticated %}
-        <li>
-          <a href="{% url 'logout' %}">Logout</a>
-        </li>
-        {% endif %}
         <li>
           <a href="{% url 'recipe_new' %}">Write a recipe</a>
         </li>
       </ul>
     </nav>
-    {% block pagination %}
-    {% endblock pagination %}
   </header>
-  {% block content %}
-  {% endblock content %}
+  <main class="recipe-grid">
+    {% for recipe in recipe_list %}
+      <div class="recipe-card">
+        <h2 class="recipe-card-title">
+          <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
+        </h2>
+        <p class="recipe-card-date">{{ recipe.updated }}</p>
+      </div>
+    {% endfor %}
+  </main>
 </body>
 
 </html>

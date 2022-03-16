@@ -9,5 +9,3 @@ class TagAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Tag, TagAdmin)
-
-# comments
