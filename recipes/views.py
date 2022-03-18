@@ -4,9 +4,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.decorators.http import require_http_methods
 
 from recipes.forms import RatingForm
-from recipes.models import Recipe
+from recipes.models import Recipe, ShoppingItem
 
 
 def log_rating(request, recipe_id):
@@ -60,3 +61,41 @@ class RecipeDeleteView(LoginRequiredMixin, DeleteView):
     model = Recipe
     template_name = "recipes/delete.html"
     success_url = reverse_lazy("recipes_list")
+
+
+class ShoppingItemListView(LoginRequiredMixin, ListView):
+    model = ShoppingItem
+    template_name = "shopping_items/list.html"
+
+    def get_queryset(self):
+        return ShoppingItem.objects.filter(user=self.request.user)
+
+
+@require_http_methods(["POST"])
+def create_shopping_item(request):
+    ingredient_id = request.POST.get("ingredient_id")
+    ingredient = Ingredient.objects.get(ingredient_id)
+    user = request.user
+
+    try:
+        ShoppingItem.objects.create(
+            food_item=ingredient.food,
+            user=user,
+        )
+    except IntegrityError:
+
+        pass
+
+    return redirect("recipe_detail", pk=ingredient.recipe.id)
+
+
+def delete_all_shopping_items(request):
+    ShoppingItem.objects.filter(user=request.user).delete()
+    return redirect("shopping_item_list")
+
+
+# class ShoppingItemListView(LoginRequiredMixin, ListView):
+# model = ShoppingItem
+# template_name = "
+
+# def shopping item createview

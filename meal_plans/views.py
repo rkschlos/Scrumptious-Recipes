@@ -12,7 +12,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 
 # if you want to use a form use below
-# from meal_plans.form import MealPlanForm, MealPlanDeleteForm
+from meal_plans.forms import MealPlanForm, MealPlanDeleteForm
 
 from meal_plans.models import MealPlan
 

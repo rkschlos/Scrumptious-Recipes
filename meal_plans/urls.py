@@ -10,11 +10,27 @@ from meal_plans.views import (
 
 # RecipeDetailView is a placeholder path
 
-urlpatterns = [
-    path("", MealPlanListView.as_view(), name="meal_list"),
-    path("<int:pk>/", MealPlanDetailView.as_view(), name="meal_plan_detail"),
-    path("new/", MealPlanCreateView.as_view(), name="meal_plan_new"),
-    path("<int:pk>/edit/", MealPlanUpdateView.as_view(), name="meal_plan_edit"),
+urlpatterns = [  # these names are arbitrary, just connecting view to url
+    path(
+        "",
+        MealPlanListView.as_view(),
+        name="meal_plan_list",
+    ),
+    path(
+        "<int:pk>/",  # unique id for this specific meal plan
+        MealPlanDetailView.as_view(),
+        name="meal_plan_detail",
+    ),
+    path(
+        "create/",
+        MealPlanCreateView.as_view(),
+        name="meal_plan_new",
+    ),
+    path(
+        "<int:pk>/edit/",
+        MealPlanUpdateView.as_view(),
+        name="meal_plan_edit",
+    ),
     path(
         "<int:pk>/delete/",
         MealPlanDeleteView.as_view(),
